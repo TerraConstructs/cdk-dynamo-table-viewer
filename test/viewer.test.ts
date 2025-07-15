@@ -104,4 +104,6 @@ test("happy  flow", () => {
   template.resourceCountIs(ApiGatewayDeployment, 1);
   template.resourceCountIs(IamRole, 2);
   template.resourceCountIs(LambdaPermission, 4);
+  const viewerEndpointOutputs = template.outputByName("ViewerEndpointOutputs");
+  expect(viewerEndpointOutputs).toBeDefined();
 });

@@ -88,6 +88,17 @@ exports[`happy  flow 1`] = `
       }
     }
   },
+  "output": {
+    "ViewerEndpointOutputs": {
+      "description": "Outputs for test-ViewerEndpoint",
+      "value": {
+        "restApiId": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}",
+        "restApiName": "testviewerViewerEndpointDCCECA7F",
+        "restApiRootResourceId": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.root_resource_id}",
+        "url": "https://\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}.execute-api.us-east-1.\${data.aws_partition.Partitition.dns_suffix}/\${aws_api_gateway_stage.viewer_ViewerEndpoint_DeploymentStageprod_95943DC5.stage_name}/"
+      }
+    }
+  },
   "provider": {
     "aws": [
       {

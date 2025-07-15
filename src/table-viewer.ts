@@ -35,6 +35,12 @@ export interface TableViewerProps {
    * @default - No sort
    */
   readonly sortBy?: string;
+
+  /**
+   * Whether to register the API Gateaway outputs in the stack.
+   * @default true
+   */
+  registerOutputs?: boolean;
 }
 
 /**
@@ -65,6 +71,7 @@ export class TableViewer extends Construct {
       endpointConfiguration: props.endpointType
         ? { types: [props.endpointType] }
         : undefined,
+      registerOutputs: props.registerOutputs ?? true,
     });
     this.endpoint = home.url;
   }
