@@ -1,6 +1,8 @@
 # cdk-dynamo-table-viewer
 
-An AWS CDK construct which exposes a public HTTP endpoint which displays an HTML
+Original AWS CDK Construct: [cdklabs/cdk-dynamo-table-viewer#](https://github.com/cdklabs/cdk-dynamo-table-viewer#)
+
+An AWS TerraConstruct which exposes a public HTTP endpoint to display an HTML
 page with the contents of a DynamoDB table in your stack.
 
 __SECURITY NOTE__: this construct was built for demonstration purposes and
@@ -11,18 +13,14 @@ The library is published under the following names:
 
 |Language|Repository
 |--------|-----------
-|JavaScript/TypeScript|[cdk-dynamo-table-viewer](https://www.npmjs.com/package/cdk-dynamo-table-viewer)
-|Python|[cdk-dynamo-table-viewer](https://pypi.org/project/cdk-dynamo-table-viewer/)
-|.NET|[Eladb.DynamoTableViewer](https://www.nuget.org/packages/Eladb.DynamoTableViewer/)
-|Java|[com.github.eladb/cdk-dynamo-table-viewer](https://search.maven.org/artifact/com.github.eladb/cdk-dynamo-table-viewer)
-|Go|[github.com/cdklabs/cdk-dynamo-table-viewer-go/dynamotableviewer](https://pkg.go.dev/github.com/cdklabs/cdk-dynamo-table-viewer-go/dynamotableviewer)
+|JavaScript/TypeScript|[cdk-dynamo-table-viewer](https://www.npmjs.com/package/@tcons/cdk-dynamo-table-viewer)
 
 ## Usage (TypeScript/JavaScript)
 
 Install via npm:
 
 ```shell
-$ npm i cdk-dynamo-table-viewer
+$ npm i @tcons/cdk-dynamo-table-viewer
 ```
 
 Add to your CDK stack:
@@ -39,11 +37,11 @@ const viewer = new TableViewer(this, 'CookiesViewer', {
 
 Notes:
 
-- The endpoint will be available (as an deploy-time value) under `viewer.endpoint`.
+- The endpoint will be available (as a deploy-time value) under `viewer.endpoint`.
   It will also be exported as a stack output.
 - Paging is not supported. This means that only the first 1MB of items will be
   displayed (again, this is a demo...)
-- Supports CDK version 2.60.0 and above
+- Supports TerraConstructs version 0.0.26 and above
 
 ## License
 

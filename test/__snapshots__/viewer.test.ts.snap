@@ -1,534 +1,343 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`happy  flow 1`] = `
-Object {
-  "Outputs": Object {
-    "viewerViewerEndpoint2EEAF9D2": Object {
-      "Value": Object {
-        "Fn::Join": Array [
-          "",
-          Array [
-            "https://",
-            Object {
-              "Ref": "viewerViewerEndpointDED2DEA4",
-            },
-            ".execute-api.",
-            Object {
-              "Ref": "AWS::Region",
-            },
-            ".",
-            Object {
-              "Ref": "AWS::URLSuffix",
-            },
-            "/",
-            Object {
-              "Ref": "viewerViewerEndpointDeploymentStageprod95943DC5",
-            },
-            "/",
-          ],
-        ],
-      },
+"{
+  "data": {
+    "aws_caller_identity": {
+      "CallerIdentity": {
+        "provider": "aws"
+      }
     },
-  },
-  "Parameters": Object {
-    "BootstrapVersion": Object {
-      "Default": "/cdk-bootstrap/hnb659fds/version",
-      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
-      "Type": "AWS::SSM::Parameter::Value<String>",
-    },
-  },
-  "Resources": Object {
-    "MyTable794EDED1": Object {
-      "DeletionPolicy": "Retain",
-      "Properties": Object {
-        "AttributeDefinitions": Array [
-          Object {
-            "AttributeName": "id",
-            "AttributeType": "S",
-          },
-        ],
-        "KeySchema": Array [
-          Object {
-            "AttributeName": "id",
-            "KeyType": "HASH",
-          },
-        ],
-        "ProvisionedThroughput": Object {
-          "ReadCapacityUnits": 5,
-          "WriteCapacityUnits": 5,
-        },
-      },
-      "Type": "AWS::DynamoDB::Table",
-      "UpdateReplacePolicy": "Retain",
-    },
-    "viewerRenderedEEFA1E5E": Object {
-      "DependsOn": Array [
-        "viewerRenderedServiceRoleDefaultPolicy196964DF",
-        "viewerRenderedServiceRole7AE70B4C",
-      ],
-      "Properties": Object {
-        "Code": Object {
-          "S3Bucket": Object {
-            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
-          },
-          "S3Key": "6ef63c8e0feb2ee73d336465b0d50733c8ede8bfdb37d27af4a6582fecd14ed0.zip",
-        },
-        "Environment": Object {
-          "Variables": Object {
-            "SORT_BY": "",
-            "TABLE_NAME": Object {
-              "Ref": "MyTable794EDED1",
-            },
-            "TITLE": "",
-          },
-        },
-        "Handler": "index.handler",
-        "Role": Object {
-          "Fn::GetAtt": Array [
-            "viewerRenderedServiceRole7AE70B4C",
-            "Arn",
-          ],
-        },
-        "Runtime": "nodejs18.x",
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "viewerRenderedServiceRole7AE70B4C": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": Object {
-                "Service": "lambda.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                "arn:",
-                Object {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-              ],
+    "aws_iam_policy_document": {
+      "viewer_Rendered_ServiceRole_AssumeRolePolicy_8C6DC3A1": {
+        "statement": [
+          {
+            "actions": [
+              "sts:AssumeRole"
             ],
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "viewerRenderedServiceRoleDefaultPolicy196964DF": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
-                "dynamodb:BatchGetItem",
-                "dynamodb:GetRecords",
-                "dynamodb:GetShardIterator",
-                "dynamodb:Query",
-                "dynamodb:GetItem",
-                "dynamodb:Scan",
-                "dynamodb:ConditionCheckItem",
-                "dynamodb:DescribeTable",
-              ],
-              "Effect": "Allow",
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
-                    "MyTable794EDED1",
-                    "Arn",
-                  ],
-                },
-                Object {
-                  "Ref": "AWS::NoValue",
-                },
-              ],
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "PolicyName": "viewerRenderedServiceRoleDefaultPolicy196964DF",
-        "Roles": Array [
-          Object {
-            "Ref": "viewerRenderedServiceRole7AE70B4C",
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Policy",
-    },
-    "viewerViewerEndpointANY4A9252D2": Object {
-      "Properties": Object {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "ANY",
-        "Integration": Object {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                "arn:",
-                Object {
-                  "Ref": "AWS::Partition",
-                },
-                ":apigateway:",
-                Object {
-                  "Ref": "AWS::Region",
-                },
-                ":lambda:path/2015-03-31/functions/",
-                Object {
-                  "Fn::GetAtt": Array [
-                    "viewerRenderedEEFA1E5E",
-                    "Arn",
-                  ],
-                },
-                "/invocations",
-              ],
-            ],
-          },
-        },
-        "ResourceId": Object {
-          "Fn::GetAtt": Array [
-            "viewerViewerEndpointDED2DEA4",
-            "RootResourceId",
-          ],
-        },
-        "RestApiId": Object {
-          "Ref": "viewerViewerEndpointDED2DEA4",
-        },
-      },
-      "Type": "AWS::ApiGateway::Method",
-    },
-    "viewerViewerEndpointANYApiPermissionTesttestviewerViewerEndpointDCCECA7FANYF9156524": Object {
-      "Properties": Object {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": Object {
-          "Fn::GetAtt": Array [
-            "viewerRenderedEEFA1E5E",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              Object {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              Object {
-                "Ref": "viewerViewerEndpointDED2DEA4",
-              },
-              "/test-invoke-stage/*/",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "viewerViewerEndpointANYApiPermissiontestviewerViewerEndpointDCCECA7FANY731E84A4": Object {
-      "Properties": Object {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": Object {
-          "Fn::GetAtt": Array [
-            "viewerRenderedEEFA1E5E",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              Object {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              Object {
-                "Ref": "viewerViewerEndpointDED2DEA4",
-              },
-              "/",
-              Object {
-                "Ref": "viewerViewerEndpointDeploymentStageprod95943DC5",
-              },
-              "/*/",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "viewerViewerEndpointAccount1D965397": Object {
-      "DeletionPolicy": "Retain",
-      "DependsOn": Array [
-        "viewerViewerEndpointDED2DEA4",
-      ],
-      "Properties": Object {
-        "CloudWatchRoleArn": Object {
-          "Fn::GetAtt": Array [
-            "viewerViewerEndpointCloudWatchRole28045685",
-            "Arn",
-          ],
-        },
-      },
-      "Type": "AWS::ApiGateway::Account",
-      "UpdateReplacePolicy": "Retain",
-    },
-    "viewerViewerEndpointCloudWatchRole28045685": Object {
-      "DeletionPolicy": "Retain",
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": Object {
-                "Service": "apigateway.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                "arn:",
-                Object {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
-              ],
-            ],
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-      "UpdateReplacePolicy": "Retain",
-    },
-    "viewerViewerEndpointDED2DEA4": Object {
-      "Properties": Object {
-        "Name": "ViewerEndpoint",
-      },
-      "Type": "AWS::ApiGateway::RestApi",
-    },
-    "viewerViewerEndpointDeployment00B069459b597739070db86e729796710f9f86da": Object {
-      "DependsOn": Array [
-        "viewerViewerEndpointproxyANYF7759A2A",
-        "viewerViewerEndpointproxy103C52F5",
-        "viewerViewerEndpointANY4A9252D2",
-      ],
-      "Properties": Object {
-        "Description": "Automatically created by the RestApi construct",
-        "RestApiId": Object {
-          "Ref": "viewerViewerEndpointDED2DEA4",
-        },
-      },
-      "Type": "AWS::ApiGateway::Deployment",
-    },
-    "viewerViewerEndpointDeploymentStageprod95943DC5": Object {
-      "DependsOn": Array [
-        "viewerViewerEndpointAccount1D965397",
-      ],
-      "Properties": Object {
-        "DeploymentId": Object {
-          "Ref": "viewerViewerEndpointDeployment00B069459b597739070db86e729796710f9f86da",
-        },
-        "RestApiId": Object {
-          "Ref": "viewerViewerEndpointDED2DEA4",
-        },
-        "StageName": "prod",
-      },
-      "Type": "AWS::ApiGateway::Stage",
-    },
-    "viewerViewerEndpointproxy103C52F5": Object {
-      "Properties": Object {
-        "ParentId": Object {
-          "Fn::GetAtt": Array [
-            "viewerViewerEndpointDED2DEA4",
-            "RootResourceId",
-          ],
-        },
-        "PathPart": "{proxy+}",
-        "RestApiId": Object {
-          "Ref": "viewerViewerEndpointDED2DEA4",
-        },
-      },
-      "Type": "AWS::ApiGateway::Resource",
-    },
-    "viewerViewerEndpointproxyANYApiPermissionTesttestviewerViewerEndpointDCCECA7FANYproxyC67CDEE2": Object {
-      "Properties": Object {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": Object {
-          "Fn::GetAtt": Array [
-            "viewerRenderedEEFA1E5E",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              Object {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              Object {
-                "Ref": "viewerViewerEndpointDED2DEA4",
-              },
-              "/test-invoke-stage/*/*",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "viewerViewerEndpointproxyANYApiPermissiontestviewerViewerEndpointDCCECA7FANYproxy04819798": Object {
-      "Properties": Object {
-        "Action": "lambda:InvokeFunction",
-        "FunctionName": Object {
-          "Fn::GetAtt": Array [
-            "viewerRenderedEEFA1E5E",
-            "Arn",
-          ],
-        },
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":execute-api:",
-              Object {
-                "Ref": "AWS::Region",
-              },
-              ":",
-              Object {
-                "Ref": "AWS::AccountId",
-              },
-              ":",
-              Object {
-                "Ref": "viewerViewerEndpointDED2DEA4",
-              },
-              "/",
-              Object {
-                "Ref": "viewerViewerEndpointDeploymentStageprod95943DC5",
-              },
-              "/*/*",
-            ],
-          ],
-        },
-      },
-      "Type": "AWS::Lambda::Permission",
-    },
-    "viewerViewerEndpointproxyANYF7759A2A": Object {
-      "Properties": Object {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "ANY",
-        "Integration": Object {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                "arn:",
-                Object {
-                  "Ref": "AWS::Partition",
-                },
-                ":apigateway:",
-                Object {
-                  "Ref": "AWS::Region",
-                },
-                ":lambda:path/2015-03-31/functions/",
-                Object {
-                  "Fn::GetAtt": Array [
-                    "viewerRenderedEEFA1E5E",
-                    "Arn",
-                  ],
-                },
-                "/invocations",
-              ],
-            ],
-          },
-        },
-        "ResourceId": Object {
-          "Ref": "viewerViewerEndpointproxy103C52F5",
-        },
-        "RestApiId": Object {
-          "Ref": "viewerViewerEndpointDED2DEA4",
-        },
-      },
-      "Type": "AWS::ApiGateway::Method",
-    },
-  },
-  "Rules": Object {
-    "CheckBootstrapVersion": Object {
-      "Assertions": Array [
-        Object {
-          "Assert": Object {
-            "Fn::Not": Array [
-              Object {
-                "Fn::Contains": Array [
-                  Array [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                  ],
-                  Object {
-                    "Ref": "BootstrapVersion",
-                  },
+            "effect": "Allow",
+            "principals": [
+              {
+                "identifiers": [
+                  "\${data.aws_service_principal.aws_svcp_default_region_lambda.name}"
                 ],
-              },
+                "type": "Service"
+              }
+            ]
+          }
+        ]
+      },
+      "viewer_Rendered_ServiceRole_DefaultPolicy_7776F322": {
+        "statement": [
+          {
+            "actions": [
+              "xray:PutTraceSegments",
+              "xray:PutTelemetryRecords"
             ],
+            "effect": "Allow",
+            "resources": [
+              "*"
+            ]
           },
-          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
-        },
-      ],
+          {
+            "actions": [
+              "dynamodb:BatchGetItem",
+              "dynamodb:Query",
+              "dynamodb:GetItem",
+              "dynamodb:Scan",
+              "dynamodb:ConditionCheckItem",
+              "dynamodb:DescribeTable"
+            ],
+            "effect": "Allow",
+            "resources": [
+              "\${aws_dynamodb_table.MyTable_794EDED1.arn}"
+            ]
+          }
+        ]
+      },
+      "viewer_ViewerEndpoint_CloudWatchRole_AssumeRolePolicy_4B9372FB": {
+        "statement": [
+          {
+            "actions": [
+              "sts:AssumeRole"
+            ],
+            "effect": "Allow",
+            "principals": [
+              {
+                "identifiers": [
+                  "\${data.aws_service_principal.aws_svcp_default_region_apigateway.name}"
+                ],
+                "type": "Service"
+              }
+            ]
+          }
+        ]
+      }
     },
+    "aws_partition": {
+      "Partitition": {
+        "provider": "aws"
+      }
+    },
+    "aws_service_principal": {
+      "aws_svcp_default_region_apigateway": {
+        "service_name": "apigateway"
+      },
+      "aws_svcp_default_region_lambda": {
+        "service_name": "lambda"
+      }
+    }
   },
-}
+  "provider": {
+    "aws": [
+      {
+        "region": "us-east-1"
+      }
+    ]
+  },
+  "resource": {
+    "aws_api_gateway_account": {
+      "viewer_ViewerEndpoint_Account_1D965397": {
+        "cloudwatch_role_arn": "\${aws_iam_role.viewer_ViewerEndpoint_CloudWatchRole_28045685.arn}",
+        "depends_on": [
+          "aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4"
+        ]
+      }
+    },
+    "aws_api_gateway_deployment": {
+      "viewer_ViewerEndpoint_Deployment_00B06945": {
+        "depends_on": [
+          "aws_api_gateway_resource.viewer_ViewerEndpoint_proxy_103C52F5",
+          "aws_api_gateway_method.viewer_ViewerEndpoint_ANY_4A9252D2",
+          "aws_api_gateway_method.viewer_ViewerEndpoint_proxy_ANY_F7759A2A"
+        ],
+        "description": "Automatically created by the RestApi construct",
+        "lifecycle": {
+          "create_before_destroy": true
+        },
+        "rest_api_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}",
+        "triggers": {
+          "redeployment": "b87a92a4f19666f0bc155c3eda2965af"
+        }
+      }
+    },
+    "aws_api_gateway_integration": {
+      "viewer_ViewerEndpoint_ANY_Integration_F86AF823": {
+        "http_method": "\${aws_api_gateway_method.viewer_ViewerEndpoint_ANY_4A9252D2.http_method}",
+        "integration_http_method": "POST",
+        "resource_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.root_resource_id}",
+        "rest_api_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}",
+        "type": "AWS_PROXY",
+        "uri": "arn:\${data.aws_partition.Partitition.partition}:apigateway:us-east-1:lambda:path/2015-03-31/functions/\${aws_lambda_function.viewer_Rendered_EEFA1E5E.arn}/invocations"
+      },
+      "viewer_ViewerEndpoint_proxy_ANY_Integration_2F5B634D": {
+        "http_method": "\${aws_api_gateway_method.viewer_ViewerEndpoint_proxy_ANY_F7759A2A.http_method}",
+        "integration_http_method": "POST",
+        "resource_id": "\${aws_api_gateway_resource.viewer_ViewerEndpoint_proxy_103C52F5.id}",
+        "rest_api_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}",
+        "type": "AWS_PROXY",
+        "uri": "arn:\${data.aws_partition.Partitition.partition}:apigateway:us-east-1:lambda:path/2015-03-31/functions/\${aws_lambda_function.viewer_Rendered_EEFA1E5E.arn}/invocations"
+      }
+    },
+    "aws_api_gateway_method": {
+      "viewer_ViewerEndpoint_ANY_4A9252D2": {
+        "authorization": "NONE",
+        "http_method": "ANY",
+        "resource_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.root_resource_id}",
+        "rest_api_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}"
+      },
+      "viewer_ViewerEndpoint_proxy_ANY_F7759A2A": {
+        "authorization": "NONE",
+        "http_method": "ANY",
+        "resource_id": "\${aws_api_gateway_resource.viewer_ViewerEndpoint_proxy_103C52F5.id}",
+        "rest_api_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}"
+      }
+    },
+    "aws_api_gateway_resource": {
+      "viewer_ViewerEndpoint_proxy_103C52F5": {
+        "parent_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.root_resource_id}",
+        "path_part": "{proxy+}",
+        "rest_api_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}"
+      }
+    },
+    "aws_api_gateway_rest_api": {
+      "viewer_ViewerEndpoint_DED2DEA4": {
+        "name": "testviewerViewerEndpointDCCECA7F",
+        "tags": {
+          "Name": "test-ViewerEndpoint",
+          "grid:EnvironmentName": "test",
+          "grid:UUID": "test-uuid"
+        }
+      }
+    },
+    "aws_api_gateway_stage": {
+      "viewer_ViewerEndpoint_DeploymentStageprod_95943DC5": {
+        "depends_on": [
+          "aws_api_gateway_account.viewer_ViewerEndpoint_Account_1D965397"
+        ],
+        "deployment_id": "\${aws_api_gateway_deployment.viewer_ViewerEndpoint_Deployment_00B06945.id}",
+        "rest_api_id": "\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}",
+        "stage_name": "prod",
+        "tags": {
+          "Name": "test-ViewerEndpoint",
+          "grid:EnvironmentName": "test",
+          "grid:UUID": "test-uuid"
+        }
+      }
+    },
+    "aws_cloudwatch_log_group": {
+      "viewer_Rendered_LogGroup_69DAC943": {
+        "name": "/aws/lambda/test-uuid-testviewerRendered",
+        "retention_in_days": 7,
+        "tags": {
+          "Name": "test-Rendered",
+          "grid:EnvironmentName": "test",
+          "grid:UUID": "test-uuid"
+        }
+      }
+    },
+    "aws_dynamodb_table": {
+      "MyTable_794EDED1": {
+        "attribute": [
+          {
+            "name": "id",
+            "type": "S"
+          }
+        ],
+        "billing_mode": "PROVISIONED",
+        "hash_key": "id",
+        "name": "testMyTableDB99BBEB",
+        "read_capacity": 5,
+        "tags": {
+          "Name": "test-MyTable",
+          "grid:EnvironmentName": "test",
+          "grid:UUID": "test-uuid"
+        },
+        "write_capacity": 5
+      }
+    },
+    "aws_iam_role": {
+      "viewer_Rendered_ServiceRole_7AE70B4C": {
+        "assume_role_policy": "\${data.aws_iam_policy_document.viewer_Rendered_ServiceRole_AssumeRolePolicy_8C6DC3A1.json}",
+        "managed_policy_arns": [
+          "arn:\${data.aws_partition.Partitition.partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        ],
+        "name_prefix": "test-uuid-testvieweRenderedServiceRole",
+        "tags": {
+          "Name": "test-Rendered",
+          "grid:EnvironmentName": "test",
+          "grid:UUID": "test-uuid"
+        }
+      },
+      "viewer_ViewerEndpoint_CloudWatchRole_28045685": {
+        "assume_role_policy": "\${data.aws_iam_policy_document.viewer_ViewerEndpoint_CloudWatchRole_AssumeRolePolicy_4B9372FB.json}",
+        "managed_policy_arns": [
+          "arn:\${data.aws_partition.Partitition.partition}:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+        ],
+        "name_prefix": "test-uuid-testviewepointCloudWatchRole",
+        "tags": {
+          "Name": "test-ViewerEndpoint",
+          "grid:EnvironmentName": "test",
+          "grid:UUID": "test-uuid"
+        }
+      }
+    },
+    "aws_iam_role_policy": {
+      "viewer_Rendered_ServiceRole_DefaultPolicy_ResourceRoles0_39823A44": {
+        "name": "testviewerRenderedServiceRoleDefaultPolicyEEF55E0E",
+        "policy": "\${data.aws_iam_policy_document.viewer_Rendered_ServiceRole_DefaultPolicy_7776F322.json}",
+        "role": "\${aws_iam_role.viewer_Rendered_ServiceRole_7AE70B4C.name}"
+      }
+    },
+    "aws_lambda_function": {
+      "viewer_Rendered_EEFA1E5E": {
+        "architectures": [
+          "x86_64"
+        ],
+        "depends_on": [
+          "aws_cloudwatch_log_group.viewer_Rendered_LogGroup_69DAC943",
+          "data.aws_iam_policy_document.viewer_Rendered_ServiceRole_AssumeRolePolicy_8C6DC3A1",
+          "aws_iam_role.viewer_Rendered_ServiceRole_7AE70B4C",
+          "data.aws_iam_policy_document.viewer_Rendered_ServiceRole_DefaultPolicy_7776F322",
+          "aws_iam_role_policy.viewer_Rendered_ServiceRole_DefaultPolicy_ResourceRoles0_39823A44"
+        ],
+        "environment": {
+          "variables": {
+            "SORT_BY": "",
+            "TABLE_NAME": "\${aws_dynamodb_table.MyTable_794EDED1.name}",
+            "TITLE": ""
+          }
+        },
+        "function_name": "test-uuid-testviewerRendered",
+        "handler": "index.handler",
+        "memory_size": 128,
+        "role": "\${aws_iam_role.viewer_Rendered_ServiceRole_7AE70B4C.arn}",
+        "runtime": "nodejs18.x",
+        "s3_bucket": "\${aws_s3_bucket.AssetBucket.bucket}",
+        "s3_key": "\${aws_s3_object.FileAsset_S3.key}",
+        "tags": {
+          "Name": "test-Rendered",
+          "grid:EnvironmentName": "test",
+          "grid:UUID": "test-uuid"
+        },
+        "timeout": 3,
+        "tracing_config": {
+          "mode": "Active"
+        }
+      }
+    },
+    "aws_lambda_permission": {
+      "viewer_ViewerEndpoint_ANY_ApiPermissionTesttestviewerViewerEndpointDCCECA7FANY_F9156524": {
+        "action": "lambda:InvokeFunction",
+        "function_name": "\${aws_lambda_function.viewer_Rendered_EEFA1E5E.arn}",
+        "principal": "apigateway.amazonaws.com",
+        "source_arn": "arn:\${data.aws_partition.Partitition.partition}:execute-api:us-east-1:\${data.aws_caller_identity.CallerIdentity.account_id}:\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}/test-invoke-stage/*/"
+      },
+      "viewer_ViewerEndpoint_ANY_ApiPermissiontestviewerViewerEndpointDCCECA7FANY_731E84A4": {
+        "action": "lambda:InvokeFunction",
+        "function_name": "\${aws_lambda_function.viewer_Rendered_EEFA1E5E.arn}",
+        "principal": "apigateway.amazonaws.com",
+        "source_arn": "arn:\${data.aws_partition.Partitition.partition}:execute-api:us-east-1:\${data.aws_caller_identity.CallerIdentity.account_id}:\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}/\${aws_api_gateway_stage.viewer_ViewerEndpoint_DeploymentStageprod_95943DC5.stage_name}/*/"
+      },
+      "viewer_ViewerEndpoint_proxy_ANY_ApiPermissionTesttestviewerViewerEndpointDCCECA7FANYproxy_C67CDEE2": {
+        "action": "lambda:InvokeFunction",
+        "function_name": "\${aws_lambda_function.viewer_Rendered_EEFA1E5E.arn}",
+        "principal": "apigateway.amazonaws.com",
+        "source_arn": "arn:\${data.aws_partition.Partitition.partition}:execute-api:us-east-1:\${data.aws_caller_identity.CallerIdentity.account_id}:\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}/test-invoke-stage/*/*"
+      },
+      "viewer_ViewerEndpoint_proxy_ANY_ApiPermissiontestviewerViewerEndpointDCCECA7FANYproxy_04819798": {
+        "action": "lambda:InvokeFunction",
+        "function_name": "\${aws_lambda_function.viewer_Rendered_EEFA1E5E.arn}",
+        "principal": "apigateway.amazonaws.com",
+        "source_arn": "arn:\${data.aws_partition.Partitition.partition}:execute-api:us-east-1:\${data.aws_caller_identity.CallerIdentity.account_id}:\${aws_api_gateway_rest_api.viewer_ViewerEndpoint_DED2DEA4.id}/\${aws_api_gateway_stage.viewer_ViewerEndpoint_DeploymentStageprod_95943DC5.stage_name}/*/*"
+      }
+    },
+    "aws_s3_bucket": {
+      "AssetBucket": {
+        "bucket": "test-uuid-\${data.aws_caller_identity.CallerIdentity.account_id}-us-east-1"
+      }
+    },
+    "aws_s3_object": {
+      "FileAsset_S3": {
+        "bucket": "\${aws_s3_bucket.AssetBucket.bucket}",
+        "key": "6ef63c8e0feb2ee73d336465b0d50733c8ede8bfdb37d27af4a6582fecd14ed0.zip",
+        "source": "assets/FileAsset/6ef63c8e0feb2ee73d336465b0d50733c8ede8bfdb37d27af4a6582fecd14ed0/archive.zip",
+        "source_hash": "6ef63c8e0feb2ee73d336465b0d50733c8ede8bfdb37d27af4a6582fecd14ed0"
+      }
+    }
+  },
+  "terraform": {
+    "backend": {
+      "local": {
+        "path": "/home/vincent/tcons/cdk-dynamo-table-viewer/terraform.test.tfstate"
+      }
+    },
+    "required_providers": {
+      "aws": {
+        "source": "aws",
+        "version": "5.100.0"
+      }
+    }
+  }
+}"
 `;

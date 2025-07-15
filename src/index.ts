@@ -1,1 +1,1 @@
-export * from './table-viewer';
+export * from "./table-viewer";

@@ -1,57 +1,75 @@
-import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
+import { cdk, javascript, TextFile } from "projen";
 
-const project = new CdklabsConstructLibrary({
-  defaultReleaseBranch: 'main',
+const nodeVersion = ">=20.9.0";
+const workflowNodeVersion = "20.9.0";
+
+const project = new cdk.JsiiProject({
+  name: "@tcons/cdk-dynamo-table-viewer",
+  description:
+    "An AWS TerraConstruct which exposes an endpoint with the contents of a DynamoDB table",
+  npmAccess: javascript.NpmAccess.PUBLIC,
+  author: "Vincent De Smet", // original is "Amazon Web Services"
+  authorAddress: "vincent.drl@gmail.com", // original is "aws-cdk-dev@amazon.dev"
+  repositoryUrl:
+    "https://github.com/TerraConstructs/cdk-dynamo-table-viewer.git",
+  keywords: ["terraconstructs"],
+  defaultReleaseBranch: "main",
+  typescriptVersion: "~5.7",
+  jsiiVersion: "~5.7",
+  packageManager: javascript.NodePackageManager.PNPM,
+  pnpmVersion: "9",
   projenrcTs: true,
-  enablePRAutoMerge: true,
-  private: false,
-  repositoryUrl: 'https://github.com/cdklabs/cdk-dynamo-table-viewer.git',
-  name: 'cdk-dynamo-table-viewer',
-  description: 'An AWS CDK construct which exposes an endpoint with the contents of a DynamoDB table',
-
-  author: 'Amazon Web Services',
-  authorAddress: 'aws-cdk-dev@amazon.com',
-
-  cdkVersion: '2.60.0',
+  prettier: true,
+  eslint: true,
+  tsconfig: {
+    compilerOptions: {
+      target: "ES2020",
+      lib: ["es2020"],
+    },
+  },
+  // release config
+  release: true,
+  releaseToNpm: true,
 
   devDeps: [
-    'ts-node@^10.8.1',
-    'aws-cdk-lib',
-    'constructs',
-    '@aws-sdk/client-dynamodb',
-    'cdklabs-projen-project-types',
+    "cdktf@^0.21.0",
+    "@cdktf/provider-aws@^20.1.0",
+    "constructs@^10.4.2",
+    "@aws-sdk/client-dynamodb",
   ],
-  peerDeps: ['aws-cdk-lib', 'constructs'],
-
-  catalog: {
-    twitter: 'emeshbi',
+  // cdktf construct lib config
+  peerDeps: [
+    "cdktf@^0.21.0",
+    "@cdktf/provider-aws@^20.1.0",
+    "constructs@^10.4.2",
+    "terraconstructs@^0.1.0",
+  ],
+  workflowNodeVersion,
+  jestOptions: {
+    jestConfig: {
+      setupFilesAfterEnv: ["<rootDir>/setup.js"],
+      // Jest is resource greedy so this shouldn't be more than 50%
+      maxWorkers: "50%",
+      testEnvironment: "node",
+    },
   },
-
-  publishToMaven: {
-    javaPackage: 'io.github.cdklabs.dynamotableviewer',
-    mavenGroupId: 'io.github.cdklabs',
-    mavenArtifactId: 'cdk-dynamo-table-view',
-    mavenServerId: 'central-ossrh',
-  },
-
-  publishToPypi: {
-    distName: 'cdk-dynamo-table-view',
-    module: 'cdk_dynamo_table_view',
-  },
-
-  publishToNuget: {
-    dotNetNamespace: 'Cdklabs.DynamoTableViewer',
-    packageId: 'Cdklabs.DynamoTableViewer',
-  },
-
-  publishToGo: {
-    moduleName: 'github.com/cdklabs/cdk-dynamo-table-viewer-go',
-    packageName: 'dynamotableviewer',
-  },
-
-  depsUpgradeOptions: {
-    exclude: ['aws-cdk-lib', 'constructs'],
-  },
+  licensed: true,
+  license: "Apache-2.0",
+  pullRequestTemplateContents: [
+    "By submitting this pull request, I confirm that my contribution is made under the terms of the Apache 2.0 license.",
+  ],
+  // disable autoMerge for now
+  autoMerge: false,
 });
 
+// Temp disable coverage for faster test runs
+project.testTask.updateStep(0, {
+  exec: "jest --passWithNoTests --updateSnapshot --coverage=false",
+  receiveArgs: true,
+});
+project.package.addField("packageManager", "pnpm@9.9.0"); // silence COREPACK_ENABLE_AUTO_PIN warning
+project.package.addEngine("node", nodeVersion);
+new TextFile(project, ".nvmrc", {
+  lines: [workflowNodeVersion],
+});
 project.synth();

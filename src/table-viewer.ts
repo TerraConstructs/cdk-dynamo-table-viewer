@@ -1,10 +1,13 @@
-import * as path from 'path';
+import * as path from "path";
+import { Construct } from "constructs";
 import {
-  aws_apigateway as apigw,
-  aws_lambda as lambda,
-  aws_dynamodb as dynamodb,
-} from 'aws-cdk-lib';
-import { Construct } from 'constructs';
+  Code,
+  Runtime,
+  EndpointType,
+  LambdaRestApi,
+  LambdaFunction,
+} from "terraconstructs/lib/aws/compute";
+import { ITable } from "terraconstructs/lib/aws/storage";
 
 export interface TableViewerProps {
   /**
@@ -13,13 +16,13 @@ export interface TableViewerProps {
    * that will be created
    * @default - EDGE
    */
-  readonly endpointType?: apigw.EndpointType;
+  readonly endpointType?: EndpointType;
 
   /**
    * The DynamoDB table to view. Note that all contents of this table will be
    * visible to the public.
    */
-  readonly table: dynamodb.ITable;
+  readonly table: ITable;
 
   /**
    * The web page title.
@@ -39,26 +42,25 @@ export interface TableViewerProps {
  * of a DynamoDB table through their browser.
  */
 export class TableViewer extends Construct {
-
   public readonly endpoint: string;
 
   constructor(parent: Construct, id: string, props: TableViewerProps) {
     super(parent, id);
 
-    const handler = new lambda.Function(this, 'Rendered', {
-      code: lambda.Code.fromAsset(path.join(__dirname, '..', 'lambda')),
-      runtime: lambda.Runtime.NODEJS_18_X,
-      handler: 'index.handler',
+    const handler = new LambdaFunction(this, "Rendered", {
+      code: Code.fromAsset(path.join(__dirname, "..", "lambda")),
+      runtime: Runtime.NODEJS_18_X,
+      handler: "index.handler",
       environment: {
         TABLE_NAME: props.table.tableName,
-        TITLE: props.title || '',
-        SORT_BY: props.sortBy || '',
+        TITLE: props.title || "",
+        SORT_BY: props.sortBy || "",
       },
     });
 
     props.table.grantReadData(handler);
 
-    const home = new apigw.LambdaRestApi(this, 'ViewerEndpoint', {
+    const home = new LambdaRestApi(this, "ViewerEndpoint", {
       handler,
       endpointConfiguration: props.endpointType
         ? { types: [props.endpointType] }

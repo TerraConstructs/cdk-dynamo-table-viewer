@@ -1,24 +1,31 @@
-import { StackProps, Stack, App } from 'aws-cdk-lib';
-import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
-import { Construct } from 'constructs';
-import { TableViewer } from '../../src';
+import { App } from "cdktf";
+import { Construct } from "constructs";
+import { AwsStackProps, AwsStack } from "terraconstructs/lib/aws";
 
-class MyStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps = {}) {
+import * as storage from "terraconstructs/lib/aws/storage";
+import { TableViewer } from "../../src";
+
+class MyStack extends AwsStack {
+  constructor(scope: Construct, id: string, props: AwsStackProps) {
     super(scope, id, props);
 
-    const table = new dynamodb.Table(this, 'my-table', {
+    const table = new storage.Table(this, "my-table", {
       partitionKey: {
-        name: 'id', type: dynamodb.AttributeType.STRING,
+        name: "id",
+        type: storage.AttributeType.STRING,
       },
     });
 
-    new TableViewer(this, 'viewer', {
+    new TableViewer(this, "viewer", {
       table,
     });
   }
 }
 
 const app = new App();
-new MyStack(app, 'my-stack');
+new MyStack(app, "my-stack", {
+  environmentName: "test",
+  gridUUID: "test-uuid",
+  providerConfig: { region: "us-east-1" },
+});
 app.synth();
