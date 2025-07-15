@@ -11,12 +11,10 @@ import { DynamodbTable } from "@cdktf/provider-aws/lib/dynamodb-table";
 import { IamRole } from "@cdktf/provider-aws/lib/iam-role";
 import { LambdaFunction } from "@cdktf/provider-aws/lib/lambda-function";
 import { LambdaPermission } from "@cdktf/provider-aws/lib/lambda-permission";
-// import * as storage from 'terraconstructs/aws/storage';
 import { App, Testing } from "cdktf";
+import "cdktf/lib/testing/adapters/jest";
 import { AwsStack } from "terraconstructs/lib/aws/aws-stack";
 import * as storage from "terraconstructs/lib/aws/storage";
-// import { Construct } from "constructs";
-import "cdktf/lib/testing/adapters/jest";
 import * as assertions from "./assertions";
 import { TableViewer } from "../src";
 
@@ -24,6 +22,9 @@ const defaultAwsStackProps = {
   environmentName: "test",
   gridUUID: "test-uuid",
   providerConfig: { region: "us-east-1" },
+  gridBackendConfig: {
+    address: "http://localhost:3000",
+  },
 };
 
 const TEST_OUTDIR = path.join(__dirname, "cdk.out");

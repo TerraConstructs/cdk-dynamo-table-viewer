@@ -328,8 +328,8 @@ exports[`happy  flow 1`] = `
   },
   "terraform": {
     "backend": {
-      "local": {
-        "path": "/home/vincent/tcons/cdk-dynamo-table-viewer/terraform.test.tfstate"
+      "http": {
+        "address": "http://localhost:3000"
       }
     },
     "required_providers": {
