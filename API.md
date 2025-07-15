@@ -146,6 +146,7 @@ const tableViewerProps: TableViewerProps = { ... }
 | --- | --- | --- |
 | <code><a href="#@tcons/cdk-dynamo-table-viewer.TableViewerProps.property.table">table</a></code> | <code>terraconstructs.aws.storage.ITable</code> | The DynamoDB table to view. |
 | <code><a href="#@tcons/cdk-dynamo-table-viewer.TableViewerProps.property.endpointType">endpointType</a></code> | <code>terraconstructs.aws.compute.EndpointType</code> | The endpoint type of the [LambdaRestApi](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-apigateway.LambdaRestApi.html) that will be created. |
+| <code><a href="#@tcons/cdk-dynamo-table-viewer.TableViewerProps.property.registerOutputs">registerOutputs</a></code> | <code>boolean</code> | Whether to register the API Gateaway outputs in the stack. |
 | <code><a href="#@tcons/cdk-dynamo-table-viewer.TableViewerProps.property.sortBy">sortBy</a></code> | <code>string</code> | Name of the column to sort by, prefix with "-" for descending order. |
 | <code><a href="#@tcons/cdk-dynamo-table-viewer.TableViewerProps.property.title">title</a></code> | <code>string</code> | The web page title. |
 
@@ -176,6 +177,19 @@ public readonly endpointType: EndpointType;
 - *Default:* EDGE
 
 The endpoint type of the [LambdaRestApi](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-apigateway.LambdaRestApi.html) that will be created.
+
+---
+
+##### `registerOutputs`<sup>Optional</sup> <a name="registerOutputs" id="@tcons/cdk-dynamo-table-viewer.TableViewerProps.property.registerOutputs"></a>
+
+```typescript
+public readonly registerOutputs: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true
+
+Whether to register the API Gateaway outputs in the stack.
 
 ---
 
