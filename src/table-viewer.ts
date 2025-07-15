@@ -40,7 +40,7 @@ export interface TableViewerProps {
    * Whether to register the API Gateaway outputs in the stack.
    * @default true
    */
-  registerOutputs?: boolean;
+  readonly registerOutputs?: boolean;
 }
 
 /**
