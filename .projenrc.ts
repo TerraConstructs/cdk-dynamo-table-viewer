@@ -67,7 +67,14 @@ project.testTask.updateStep(0, {
   exec: "jest --passWithNoTests --updateSnapshot --coverage=false",
   receiveArgs: true,
 });
-project.package.addField("packageManager", "pnpm@9.9.0"); // silence COREPACK_ENABLE_AUTO_PIN warning
+// projen unconditionally writes a "packageManager" field to package.json AND
+// renders pnpm/action-setup@v5 with a "version" input in the workflows. As of
+// action-setup@v5 that combination is a hard error ("Multiple versions of pnpm
+// specified"). Drop the "packageManager" field so the workflows can keep pinning
+// pnpm via the action "version" input; pnpm stays pinned for local tooling via
+// the "devEngines" field that projen also emits.
+const packageJson = project.tryFindObjectFile("package.json");
+packageJson?.addDeletionOverride("packageManager");
 project.package.addEngine("node", nodeVersion);
 new TextFile(project, ".nvmrc", {
   lines: [workflowNodeVersion],
