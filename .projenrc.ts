@@ -1,7 +1,9 @@
 import { cdk, javascript, TextFile } from "projen";
 
 const nodeVersion = ">=20.9.0";
-const workflowNodeVersion = "20.9.0";
+// Node 20 is EOL; use the current Active LTS (Krypton). Node 24 also ships
+// npm >= 11.5.1, which is required for npm trusted publishing (OIDC) below.
+const workflowNodeVersion = "24.18.0";
 
 const project = new cdk.JsiiProject({
   name: "@tcons/cdk-dynamo-table-viewer",
@@ -30,6 +32,11 @@ const project = new cdk.JsiiProject({
   // release config
   release: true,
   releaseToNpm: true,
+  // Publish to npm via OIDC trusted publishing instead of a long-lived NPM_TOKEN.
+  // Requires a trusted publisher configured on npmjs.com for this package
+  // (repo: TerraConstructs/cdk-dynamo-table-viewer, workflow: release.yml) and
+  // npm CLI >= 11.5.1 (provided by the Node 24 workflow runtime above).
+  npmTrustedPublishing: true,
 
   devDeps: [
     "cdktn@^0.23.0",
