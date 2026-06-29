@@ -75,6 +75,16 @@ project.testTask.updateStep(0, {
 // the "devEngines" field that projen also emits.
 const packageJson = project.tryFindObjectFile("package.json");
 packageJson?.addDeletionOverride("packageManager");
+
+// projen 0.100.x invokes commit-and-tag-version via `npx commit-and-tag-version@^12`
+// (through dax), which fails on the GitHub release runner with exit code 127. When
+// BUMP_PACKAGE is empty, projen instead resolves the locally-installed CLI and runs
+// it via node directly (shell-free), which works reliably under pnpm. The package
+// stays a devDependency, so the local resolution always succeeds.
+for (const taskName of ["bump", "unbump"]) {
+  project.tasks.tryFind(taskName)?.env("BUMP_PACKAGE", "");
+}
+
 project.package.addEngine("node", nodeVersion);
 new TextFile(project, ".nvmrc", {
   lines: [workflowNodeVersion],
