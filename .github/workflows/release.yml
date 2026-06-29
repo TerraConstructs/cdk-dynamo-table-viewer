@@ -42,7 +42,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20.9.0
+          node-version: 24.18.0
           package-manager-cache: false
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
@@ -84,7 +84,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v6
         with:
-          node-version: 20.9.0
+          node-version: 24.18.0
           package-manager-cache: false
       - name: Download build artifacts
         uses: actions/download-artifact@v8
@@ -110,7 +110,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v6
         with:
-          node-version: 20.9.0
+          node-version: 24.18.0
           package-manager-cache: false
       - name: Download build artifacts
         uses: actions/download-artifact@v8
@@ -143,6 +143,6 @@ jobs:
           NPM_DIST_TAG: latest
           NPM_REGISTRY: registry.npmjs.org
           NPM_CONFIG_PROVENANCE: "true"
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TRUSTED_PUBLISHER: "true"
           PUBLIB_DRYRUN: ${{ inputs.dry_run }}
         run: npx -p publib@latest publib-npm
