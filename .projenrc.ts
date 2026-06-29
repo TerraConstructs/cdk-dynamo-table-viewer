@@ -14,8 +14,8 @@ const project = new cdk.JsiiProject({
     "https://github.com/TerraConstructs/cdk-dynamo-table-viewer.git",
   keywords: ["terraconstructs"],
   defaultReleaseBranch: "main",
-  typescriptVersion: "~5.7",
-  jsiiVersion: "~5.7",
+  typescriptVersion: "~5.9",
+  jsiiVersion: "~5.9",
   packageManager: javascript.NodePackageManager.PNPM,
   pnpmVersion: "9",
   projenrcTs: true,
@@ -23,8 +23,8 @@ const project = new cdk.JsiiProject({
   eslint: true,
   tsconfig: {
     compilerOptions: {
-      target: "ES2020",
-      lib: ["es2020"],
+      target: "es2022",
+      lib: ["es2022"],
     },
   },
   // release config
@@ -32,17 +32,17 @@ const project = new cdk.JsiiProject({
   releaseToNpm: true,
 
   devDeps: [
-    "cdktf@^0.21.0",
-    "@cdktf/provider-aws@^20.1.0",
-    "constructs@^10.4.2",
+    "cdktn@^0.23.0",
+    "@cdktn/provider-aws@^24.8.0",
+    "constructs@^10.6.0",
     "@aws-sdk/client-dynamodb",
   ],
-  // cdktf construct lib config
+  // cdktn construct lib config
   peerDeps: [
-    "cdktf@^0.21.0",
-    "@cdktf/provider-aws@^20.1.0",
-    "constructs@^10.4.2",
-    "terraconstructs@^0.1.0",
+    "cdktn@^0.23.0",
+    "@cdktn/provider-aws@^24.8.0",
+    "constructs@^10.6.0",
+    "terraconstructs@^0.2.6",
   ],
   workflowNodeVersion,
   jestOptions: {

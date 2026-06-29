@@ -1,4 +1,4 @@
-import { App } from "cdktf";
+import { App } from "cdktn";
 import { Construct } from "constructs";
 import { AwsStackProps, AwsStack } from "terraconstructs/lib/aws";
 
