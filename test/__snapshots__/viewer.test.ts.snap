@@ -52,6 +52,16 @@ exports[`happy  flow 1`] = `
             "resources": [
               "\${aws_dynamodb_table.MyTable_794EDED1.arn}"
             ]
+          },
+          {
+            "actions": [
+              "dynamodb:GetRecords",
+              "dynamodb:GetShardIterator"
+            ],
+            "effect": "Allow",
+            "resources": [
+              "\${aws_dynamodb_table.MyTable_794EDED1.arn}"
+            ]
           }
         ]
       },
@@ -120,7 +130,9 @@ exports[`happy  flow 1`] = `
         "depends_on": [
           "aws_api_gateway_resource.viewer_ViewerEndpoint_proxy_103C52F5",
           "aws_api_gateway_method.viewer_ViewerEndpoint_ANY_4A9252D2",
-          "aws_api_gateway_method.viewer_ViewerEndpoint_proxy_ANY_F7759A2A"
+          "aws_api_gateway_method.viewer_ViewerEndpoint_proxy_ANY_F7759A2A",
+          "aws_api_gateway_integration.viewer_ViewerEndpoint_proxy_ANY_Integration_2F5B634D",
+          "aws_api_gateway_integration.viewer_ViewerEndpoint_ANY_Integration_F86AF823"
         ],
         "description": "Automatically created by the RestApi construct",
         "lifecycle": {
@@ -230,9 +242,6 @@ exports[`happy  flow 1`] = `
     "aws_iam_role": {
       "viewer_Rendered_ServiceRole_7AE70B4C": {
         "assume_role_policy": "\${data.aws_iam_policy_document.viewer_Rendered_ServiceRole_AssumeRolePolicy_8C6DC3A1.json}",
-        "managed_policy_arns": [
-          "arn:\${data.aws_partition.Partitition.partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-        ],
         "name_prefix": "test-uuid-testvieweRenderedServiceRole",
         "tags": {
           "Name": "test-Rendered",
@@ -242,9 +251,6 @@ exports[`happy  flow 1`] = `
       },
       "viewer_ViewerEndpoint_CloudWatchRole_28045685": {
         "assume_role_policy": "\${data.aws_iam_policy_document.viewer_ViewerEndpoint_CloudWatchRole_AssumeRolePolicy_4B9372FB.json}",
-        "managed_policy_arns": [
-          "arn:\${data.aws_partition.Partitition.partition}:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
-        ],
         "name_prefix": "test-uuid-testviewepointCloudWatchRole",
         "tags": {
           "Name": "test-ViewerEndpoint",
@@ -258,6 +264,16 @@ exports[`happy  flow 1`] = `
         "name": "testviewerRenderedServiceRoleDefaultPolicyEEF55E0E",
         "policy": "\${data.aws_iam_policy_document.viewer_Rendered_ServiceRole_DefaultPolicy_7776F322.json}",
         "role": "\${aws_iam_role.viewer_Rendered_ServiceRole_7AE70B4C.name}"
+      }
+    },
+    "aws_iam_role_policy_attachment": {
+      "viewer_Rendered_AWSLambdaBasicExecutionRole_Roles0_414F3CC0": {
+        "policy_arn": "arn:\${data.aws_partition.Partitition.partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+        "role": "\${aws_iam_role.viewer_Rendered_ServiceRole_7AE70B4C.name}"
+      },
+      "viewer_ViewerEndpoint_AmazonAPIGatewayPushToCloudWatchLogs_Roles0_9F949613": {
+        "policy_arn": "arn:\${data.aws_partition.Partitition.partition}:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+        "role": "\${aws_iam_role.viewer_ViewerEndpoint_CloudWatchRole_28045685.name}"
       }
     },
     "aws_lambda_function": {
@@ -345,8 +361,8 @@ exports[`happy  flow 1`] = `
     },
     "required_providers": {
       "aws": {
-        "source": "aws",
-        "version": "5.100.0"
+        "source": "hashicorp/aws",
+        "version": "6.52.0"
       }
     }
   }
