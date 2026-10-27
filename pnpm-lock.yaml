@@ -7,14 +7,34 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@cdktn/provider-aws':
-        specifier: 24.8.0
-        version: 24.8.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)
     devDependencies:
+      '@aws-cdk/cloud-assembly-schema':
+        specifier: ^54.17.0
+        version: 54.26.0
+      '@aws-cdk/region-info':
+        specifier: ^2.233.0
+        version: 2.260.0
       '@aws-sdk/client-dynamodb':
         specifier: ^3.1075.0
         version: 3.1075.0
+      '@cdktn/provider-archive':
+        specifier: ^14.0.0
+        version: 14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-aws':
+        specifier: 25.7.1
+        version: 25.7.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-cloudinit':
+        specifier: ^14.0.0
+        version: 14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-docker':
+        specifier: ^16.0.0
+        version: 16.1.0(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-time':
+        specifier: ^14.0.0
+        version: 14.0.2(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-tls':
+        specifier: ^14.0.0
+        version: 14.1.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -28,14 +48,14 @@ importers:
         specifier: ^8
         version: 8.62.0(eslint@9.39.4)(typescript@5.9.3)
       cdktn:
-        specifier: 0.23.0
-        version: 0.23.0(constructs@10.6.0)
+        specifier: 0.24.0
+        version: 0.24.0(constructs@10.7.2)
       commit-and-tag-version:
         specifier: ^12
         version: 12.7.3
       constructs:
-        specifier: 10.6.0
-        version: 10.6.0
+        specifier: 10.7.2
+        version: 10.7.2
       eslint:
         specifier: ^9
         version: 9.39.4
@@ -77,10 +97,10 @@ importers:
         version: 3.9.1
       projen:
         specifier: ^0.100.7
-        version: 0.100.7(constructs@10.6.0)
+        version: 0.100.7(constructs@10.7.2)
       terraconstructs:
-        specifier: 0.2.6
-        version: 0.2.6(@aws-cdk/cloud-assembly-schema@49.4.0)(@aws-cdk/region-info@2.260.0)(@cdktn/provider-archive@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-aws@24.8.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-cloudinit@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-docker@15.3.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-time@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-tls@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)
+        specifier: 0.2.20
+        version: 0.2.20(@aws-cdk/cloud-assembly-schema@54.26.0)(@aws-cdk/region-info@2.260.0)(@cdktn/provider-archive@14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-aws@25.7.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-cloudinit@14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-docker@16.1.0(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-time@14.0.2(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-tls@14.1.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
       ts-jest:
         specifier: ^29.4.11
         version: 29.4.11(@babel/core@7.28.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(jest-util@29.7.0)(jest@29.7.0(@types/node@26.0.1)(ts-node@10.9.2(@types/node@26.0.1)(typescript@5.9.3)))(typescript@5.9.3)
@@ -97,8 +117,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@aws-cdk/cloud-assembly-schema@49.4.0':
-    resolution: {integrity: sha512-gZh5tHe5mtTuwWj92Hso2j1FKo7yYzRg72bKn2QfL3Nm6JRkATZKQ1uRlIR1VZcU/cN19YxeLF1Ud7ag72rbRg==}
+  '@aws-cdk/cloud-assembly-schema@54.26.0':
+    resolution: {integrity: sha512-zYI3XhQ/bpuSXuPaF77f7u2q6rZBPwdrPh8a0v+e/B3IxbRQAtQv0fmacQ8uYh9RPVuIVnExE6IsFJBSALH7BA==}
     engines: {node: '>= 18.0.0'}
     bundledDependencies:
       - jsonschema
@@ -370,47 +390,47 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@cdktn/provider-archive@13.1.0':
-    resolution: {integrity: sha512-O7KBThxvpgaBVI2czF+CptCbkxhYT/XpNS/FjSQTEMRj1RaOyARHJM/0IQ75KpPsiZh5LmAz4AGm+7K0J6x4xw==}
-    engines: {node: '>= 20.16.0'}
+  '@cdktn/provider-archive@14.0.1':
+    resolution: {integrity: sha512-JqpyFUXXFn8GZcsXuxuQbs26WUKlheVhQXy+w9yk9QXn0mUnsohQhmkbFvn8WWYm2bsMJX4Oh9iRwfe68oATNA==}
+    engines: {node: '>= 22.11.0'}
     peerDependencies:
-      cdktn: ^0.23.0
-      constructs: ^10.6.0
+      cdktn: ^0.24.0
+      constructs: '>=10.6.0 <10.8.0'
 
-  '@cdktn/provider-aws@24.8.0':
-    resolution: {integrity: sha512-UI7qJhjkE5VQB6WacXentpOg5mKWv2RbbCNZCMR28Tww35gT8nr7zG9WhFCBebQ0+l1nnLgOd/KRYMJ6puIBSw==}
-    engines: {node: '>= 20.16.0'}
+  '@cdktn/provider-aws@25.7.1':
+    resolution: {integrity: sha512-wfla2Yo3Xez6ed2qXg87EHwo0UuUBXG7DqiVeYaZxOTbG7BJl4p7GEvacWjmcronLyZO+POz9eWyy2OCrou0SQ==}
+    engines: {node: '>= 22.11.0'}
     peerDependencies:
-      cdktn: ^0.23.0
-      constructs: ^10.6.0
+      cdktn: ^0.24.0
+      constructs: '>=10.6.0 <10.8.0'
 
-  '@cdktn/provider-cloudinit@13.1.0':
-    resolution: {integrity: sha512-4iHiBpVTU3SGgSNwGGL58DgGFMdWEPPjvXFG58np1H8yna1v4iCEYrZu8vVcGzQYZa8GfGCfyD+vNPZTcP/zJg==}
-    engines: {node: '>= 20.16.0'}
+  '@cdktn/provider-cloudinit@14.0.1':
+    resolution: {integrity: sha512-5Kgv5tmRYvtfOxC3ceZnu++7rtKy1S1nH7biozdKMPpjDRP5Hrts5Ftiqd5spJskDN3n88adU8WnmPFgNUGB1A==}
+    engines: {node: '>= 22.11.0'}
     peerDependencies:
-      cdktn: ^0.23.0
-      constructs: ^10.6.0
+      cdktn: ^0.24.0
+      constructs: '>=10.6.0 <10.8.0'
 
-  '@cdktn/provider-docker@15.3.0':
-    resolution: {integrity: sha512-jqGVPoq732zBExGhEVWO41mDU3OL5TXs1eq5OgRrPs3XoyceU7tHZ/EfkfgwI9rM+fCozs2Cq7U8uMBPHxym1A==}
-    engines: {node: '>= 20.16.0'}
+  '@cdktn/provider-docker@16.1.0':
+    resolution: {integrity: sha512-+4joWsWeZG9SVJidHZGt4Ig4P4pCfXF7/PJXd53QYE6kBec8sRHEKt8+d7DUiyaKGeRonOb25+PHDxr23QToUw==}
+    engines: {node: '>= 22.11.0'}
     peerDependencies:
-      cdktn: ^0.23.0
-      constructs: ^10.6.0
+      cdktn: ^0.24.0
+      constructs: '>=10.6.0 <10.8.0'
 
-  '@cdktn/provider-time@13.1.0':
-    resolution: {integrity: sha512-wQ6RbjAewq+qBdPp8o88uT3YQvBoQPeQP1RxXU2njrU8mYbutzZ719kMbrzjuOQ82X6jsXY6VtFxqgqhQvYD2A==}
-    engines: {node: '>= 20.16.0'}
+  '@cdktn/provider-time@14.0.2':
+    resolution: {integrity: sha512-1JPVXCJylV2er8imclnEolOQsooc6hnywgdukdfljoAu4JaHLb19g2xbnGjEyYPeqkZTJld+1ypB+K0uDLx0jQ==}
+    engines: {node: '>= 22.11.0'}
     peerDependencies:
-      cdktn: ^0.23.0
-      constructs: ^10.6.0
+      cdktn: ^0.24.0
+      constructs: '>=10.6.0 <10.8.0'
 
-  '@cdktn/provider-tls@13.1.0':
-    resolution: {integrity: sha512-OBDHuomHad4yl+OLhrbvtZJnOLmiIZTPG1E5chLAYQWPgR9anPasYmnCoEskfpdfD5G2Wc6djK68ltBmoee8wg==}
-    engines: {node: '>= 20.16.0'}
+  '@cdktn/provider-tls@14.1.1':
+    resolution: {integrity: sha512-tWUqENyTapwrJQuSUmmr7sot2g8xzrSLhxZvRipl9LAckqElm3U6rjUhss+JKsXfQJv+5EZIxurYkUpfZ3PpHw==}
+    engines: {node: '>= 22.11.0'}
     peerDependencies:
-      cdktn: ^0.23.0
-      constructs: ^10.6.0
+      cdktn: ^0.24.0
+      constructs: '>=10.6.0 <10.8.0'
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -978,14 +998,14 @@ packages:
     resolution: {integrity: sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==}
     engines: {node: '>= 0.8.0'}
 
-  cdktn@0.23.0:
-    resolution: {integrity: sha512-TF9sTWHOMb8O9tB/qSkIhspoPZ7QMEcoov5o3SIhGjEh6GdBB25R0ByHRKKEIwRqSXhMMlGqrocZLU+0Yt2QOg==}
+  cdktn@0.24.0:
+    resolution: {integrity: sha512-Ok7kYlM2BWyXebnQi4Se9JPsjsRZKoVtkyshkVEkhHY/fGWonMvdWvivXmdB6caBGcQ8cwioQOZXKkps+dCnZg==}
     peerDependencies:
-      constructs: ^10.6.0
+      constructs: '>=10.6.0 <10.8.0'
     bundledDependencies:
-      - json-stable-stringify
+      - fflate
+      - safe-stable-stringify
       - semver
-      - yazl
 
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -1060,8 +1080,8 @@ packages:
     resolution: {integrity: sha512-MWufYdFw53ccGjCA+Ol7XJYpAlW6/prSMzuPOTRnJGcGzuhLn4Scrz7qf6o8bROZ514ltazcIFJZevcfbo0x7A==}
     engines: {'0': node >= 6.0}
 
-  constructs@10.6.0:
-    resolution: {integrity: sha512-TxHOnBO5zMo/G76ykzGF/wMpEHu257TbWiIxP9K0Yv/+t70UzgBQiTqjkAsWOPC6jW91DzJI0+ehQV6xDRNBuQ==}
+  constructs@10.7.2:
+    resolution: {integrity: sha512-vA7JOqvO/xwq2HBCuq3qc6V2R9mHZCxJ8HPoucUcUWJY88YULe7bzMcsdBy27/gJJIphZi73U1oIXDY2Eqg6nA==}
 
   conventional-changelog-angular@6.0.0:
     resolution: {integrity: sha512-6qLgrBF4gueoC7AFVHu51nHL9pF9FRjXrH+ceVf7WmAfH3gs+gEYOkvxhjMPjZu57I4AGUGoNTY8V7Hrgf1uqg==}
@@ -2790,24 +2810,23 @@ packages:
     resolution: {integrity: sha512-eNRKgb3z66Yp3D2CixVujOUvXLFUTij/zVnV8KRyvFdQwpz7I5DS8UfRkTeLzb64u+dkzDSdelE24izu+zSSUg==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  terraconstructs@0.2.6:
-    resolution: {integrity: sha512-zV4Hg4GSE9Oew2JyT8NuijaGGiOOW39RXxy0BxxI5K7ccIbxSHzUh+NRMnewPeWrWlRsCHyS8p6C/PmvFtkvrQ==}
-    engines: {node: '>=20.9.0'}
+  terraconstructs@0.2.20:
+    resolution: {integrity: sha512-JPIBJM2uh1qtOuK5aoz97xAlDGZrv4fon3GgNE/q+3kKD6f0om2TMpA1ApD9lFMcRhjpnJHZaiX5Qbzusz/Y0g==}
+    engines: {node: '>=22.12.0'}
     peerDependencies:
-      '@aws-cdk/cloud-assembly-schema': ^49.4.0
+      '@aws-cdk/cloud-assembly-schema': ^54.17.0
       '@aws-cdk/region-info': ^2.233.0
-      '@cdktn/provider-archive': ^13.1.0
-      '@cdktn/provider-aws': ^24.8.0
-      '@cdktn/provider-cloudinit': ^13.1.0
-      '@cdktn/provider-docker': ^15.3.0
-      '@cdktn/provider-time': ^13.1.0
-      '@cdktn/provider-tls': ^13.1.0
-      cdktn: ^0.23.0
-      constructs: ^10.6.0
+      '@cdktn/provider-archive': ^14.0.0
+      '@cdktn/provider-aws': ^25.7.1
+      '@cdktn/provider-cloudinit': ^14.0.0
+      '@cdktn/provider-docker': ^16.0.0
+      '@cdktn/provider-time': ^14.0.0
+      '@cdktn/provider-tls': ^14.0.0
+      cdktn: ^0.24.0
+      constructs: ^10.7.2
     bundledDependencies:
       - '@balena/dockerignore'
       - change-case
-      - esbuild-wasm
       - ignore
       - mime-types
       - minimatch
@@ -3102,7 +3121,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.12
       '@jridgewell/trace-mapping': 0.3.29
 
-  '@aws-cdk/cloud-assembly-schema@49.4.0': {}
+  '@aws-cdk/cloud-assembly-schema@54.26.0': {}
 
   '@aws-cdk/region-info@2.260.0': {}
 
@@ -3502,35 +3521,35 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@cdktn/provider-archive@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)':
+  '@cdktn/provider-archive@14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)':
     dependencies:
-      cdktn: 0.23.0(constructs@10.6.0)
-      constructs: 10.6.0
+      cdktn: 0.24.0(constructs@10.7.2)
+      constructs: 10.7.2
 
-  '@cdktn/provider-aws@24.8.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)':
+  '@cdktn/provider-aws@25.7.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)':
     dependencies:
-      cdktn: 0.23.0(constructs@10.6.0)
-      constructs: 10.6.0
+      cdktn: 0.24.0(constructs@10.7.2)
+      constructs: 10.7.2
 
-  '@cdktn/provider-cloudinit@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)':
+  '@cdktn/provider-cloudinit@14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)':
     dependencies:
-      cdktn: 0.23.0(constructs@10.6.0)
-      constructs: 10.6.0
+      cdktn: 0.24.0(constructs@10.7.2)
+      constructs: 10.7.2
 
-  '@cdktn/provider-docker@15.3.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)':
+  '@cdktn/provider-docker@16.1.0(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)':
     dependencies:
-      cdktn: 0.23.0(constructs@10.6.0)
-      constructs: 10.6.0
+      cdktn: 0.24.0(constructs@10.7.2)
+      constructs: 10.7.2
 
-  '@cdktn/provider-time@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)':
+  '@cdktn/provider-time@14.0.2(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)':
     dependencies:
-      cdktn: 0.23.0(constructs@10.6.0)
-      constructs: 10.6.0
+      cdktn: 0.24.0(constructs@10.7.2)
+      constructs: 10.7.2
 
-  '@cdktn/provider-tls@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)':
+  '@cdktn/provider-tls@14.1.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)':
     dependencies:
-      cdktn: 0.23.0(constructs@10.6.0)
-      constructs: 10.6.0
+      cdktn: 0.24.0(constructs@10.7.2)
+      constructs: 10.7.2
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -4285,9 +4304,9 @@ snapshots:
 
   case@1.6.3: {}
 
-  cdktn@0.23.0(constructs@10.6.0):
+  cdktn@0.24.0(constructs@10.7.2):
     dependencies:
-      constructs: 10.6.0
+      constructs: 10.7.2
 
   chalk@2.4.2:
     dependencies:
@@ -4380,7 +4399,7 @@ snapshots:
       readable-stream: 3.6.2
       typedarray: 0.0.6
 
-  constructs@10.6.0: {}
+  constructs@10.7.2: {}
 
   conventional-changelog-angular@6.0.0:
     dependencies:
@@ -6079,9 +6098,9 @@ snapshots:
 
   process-nextick-args@2.0.1: {}
 
-  projen@0.100.7(constructs@10.6.0):
+  projen@0.100.7(constructs@10.7.2):
     dependencies:
-      constructs: 10.6.0
+      constructs: 10.7.2
 
   prompts@2.4.2:
     dependencies:
@@ -6426,18 +6445,18 @@ snapshots:
     dependencies:
       '@pkgr/core': 0.3.6
 
-  terraconstructs@0.2.6(@aws-cdk/cloud-assembly-schema@49.4.0)(@aws-cdk/region-info@2.260.0)(@cdktn/provider-archive@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-aws@24.8.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-cloudinit@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-docker@15.3.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-time@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(@cdktn/provider-tls@13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0))(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0):
+  terraconstructs@0.2.20(@aws-cdk/cloud-assembly-schema@54.26.0)(@aws-cdk/region-info@2.260.0)(@cdktn/provider-archive@14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-aws@25.7.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-cloudinit@14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-docker@16.1.0(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-time@14.0.2(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(@cdktn/provider-tls@14.1.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2))(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2):
     dependencies:
-      '@aws-cdk/cloud-assembly-schema': 49.4.0
+      '@aws-cdk/cloud-assembly-schema': 54.26.0
       '@aws-cdk/region-info': 2.260.0
-      '@cdktn/provider-archive': 13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)
-      '@cdktn/provider-aws': 24.8.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)
-      '@cdktn/provider-cloudinit': 13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)
-      '@cdktn/provider-docker': 15.3.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)
-      '@cdktn/provider-time': 13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)
-      '@cdktn/provider-tls': 13.1.0(cdktn@0.23.0(constructs@10.6.0))(constructs@10.6.0)
-      cdktn: 0.23.0(constructs@10.6.0)
-      constructs: 10.6.0
+      '@cdktn/provider-archive': 14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-aws': 25.7.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-cloudinit': 14.0.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-docker': 16.1.0(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-time': 14.0.2(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      '@cdktn/provider-tls': 14.1.1(cdktn@0.24.0(constructs@10.7.2))(constructs@10.7.2)
+      cdktn: 0.24.0(constructs@10.7.2)
+      constructs: 10.7.2
 
   test-exclude@6.0.0:
     dependencies:

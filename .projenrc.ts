@@ -39,21 +39,26 @@ const project = new cdk.JsiiProject({
   npmTrustedPublishing: true,
 
   devDeps: [
-    "cdktn@^0.23.0",
-    "@cdktn/provider-aws@^24.8.0",
-    "constructs@^10.6.0",
+    "cdktn@^0.24.0",
+    "@cdktn/provider-aws@^25.7.1",
+    "constructs@^10.7.2",
     "@aws-sdk/client-dynamodb",
+    // terraconstructs 0.2.20 declares these as (non-optional) peers; they are
+    // only needed here so the test suite can load terraconstructs.
+    "@cdktn/provider-tls@^14.0.0",
+    "@cdktn/provider-time@^14.0.0",
+    "@cdktn/provider-docker@^16.0.0",
+    "@cdktn/provider-archive@^14.0.0",
+    "@cdktn/provider-cloudinit@^14.0.0",
+    "@aws-cdk/region-info@^2.233.0",
+    "@aws-cdk/cloud-assembly-schema@^54.17.0",
   ],
-  // TerraConstructs imports this provider at runtime. Keep it as a peer to
-  // validate compatibility, and install it as a dependency so pnpm consumers
-  // can resolve the published construct without manually adding it.
-  deps: ["@cdktn/provider-aws@24.8.0"],
   // cdktn construct lib config
   peerDeps: [
-    "cdktn@^0.23.0",
-    "@cdktn/provider-aws@^24.8.0",
-    "constructs@^10.6.0",
-    "terraconstructs@^0.2.6",
+    "cdktn@^0.24.0",
+    "@cdktn/provider-aws@^25.7.1",
+    "constructs@^10.7.2",
+    "terraconstructs@^0.2.20",
   ],
   workflowNodeVersion,
   jestOptions: {
@@ -62,6 +67,18 @@ const project = new cdk.JsiiProject({
       // Jest is resource greedy so this shouldn't be more than 50%
       maxWorkers: "50%",
       testEnvironment: "node",
+      // terraconstructs >=0.2.20 bundles the ESM-only change-case@5, which jest
+      // (CommonJS) cannot parse. Transpile just that package to CommonJS.
+      transformIgnorePatterns: ["/node_modules/(?!.*change-case)"],
+      transform: {
+        "^.+\\.[t]sx?$": new javascript.Transform("ts-jest", {
+          tsconfig: "test/tsconfig.json",
+        }),
+        "/change-case/.+\\.js$": new javascript.Transform("ts-jest", {
+          diagnostics: false,
+          tsconfig: { allowJs: true, module: "commonjs", target: "es2022" },
+        }),
+      },
     },
   },
   licensed: true,
