@@ -39,7 +39,7 @@ const project = new cdk.JsiiProject({
   npmTrustedPublishing: true,
 
   devDeps: [
-    "cdktn@^0.24.0",
+    "cdktn@^0.25.0",
     "@cdktn/provider-aws@^25.7.1",
     "constructs@^10.7.2",
     "@aws-sdk/client-dynamodb",
@@ -55,7 +55,7 @@ const project = new cdk.JsiiProject({
   ],
   // cdktn construct lib config
   peerDeps: [
-    "cdktn@^0.24.0",
+    "cdktn@^0.25.0",
     "@cdktn/provider-aws@^25.7.1",
     "constructs@^10.7.2",
     "terraconstructs@^0.2.20",

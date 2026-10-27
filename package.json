@@ -48,7 +48,7 @@
     "@types/node": "ts5.9",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
-    "cdktn": "0.24.0",
+    "cdktn": "0.25.0",
     "commit-and-tag-version": "^12",
     "constructs": "10.7.2",
     "eslint": "^9",
@@ -72,7 +72,7 @@
   },
   "peerDependencies": {
     "@cdktn/provider-aws": "^25.7.1",
-    "cdktn": "^0.24.0",
+    "cdktn": "^0.25.0",
     "constructs": "^10.7.2",
     "terraconstructs": "^0.2.20"
   },
