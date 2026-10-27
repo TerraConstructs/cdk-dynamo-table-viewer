@@ -44,6 +44,10 @@ const project = new cdk.JsiiProject({
     "constructs@^10.6.0",
     "@aws-sdk/client-dynamodb",
   ],
+  // TerraConstructs imports this provider at runtime. Keep it as a peer to
+  // validate compatibility, and install it as a dependency so pnpm consumers
+  // can resolve the published construct without manually adding it.
+  deps: ["@cdktn/provider-aws@24.8.0"],
   // cdktn construct lib config
   peerDeps: [
     "cdktn@^0.23.0",

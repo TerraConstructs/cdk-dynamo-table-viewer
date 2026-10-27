@@ -69,6 +69,9 @@
     "constructs": "^10.6.0",
     "terraconstructs": "^0.2.6"
   },
+  "dependencies": {
+    "@cdktn/provider-aws": "24.8.0"
+  },
   "pnpm": {},
   "keywords": [
     "terraconstructs"
