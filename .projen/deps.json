@@ -1,12 +1,47 @@
 {
   "dependencies": [
     {
+      "name": "@aws-cdk/cloud-assembly-schema",
+      "version": "^54.17.0",
+      "type": "build"
+    },
+    {
+      "name": "@aws-cdk/region-info",
+      "version": "^2.233.0",
+      "type": "build"
+    },
+    {
       "name": "@aws-sdk/client-dynamodb",
       "type": "build"
     },
     {
+      "name": "@cdktn/provider-archive",
+      "version": "^14.0.0",
+      "type": "build"
+    },
+    {
       "name": "@cdktn/provider-aws",
-      "version": "^24.8.0",
+      "version": "^25.7.1",
+      "type": "build"
+    },
+    {
+      "name": "@cdktn/provider-cloudinit",
+      "version": "^14.0.0",
+      "type": "build"
+    },
+    {
+      "name": "@cdktn/provider-docker",
+      "version": "^16.0.0",
+      "type": "build"
+    },
+    {
+      "name": "@cdktn/provider-time",
+      "version": "^14.0.0",
+      "type": "build"
+    },
+    {
+      "name": "@cdktn/provider-tls",
+      "version": "^14.0.0",
       "type": "build"
     },
     {
@@ -30,7 +65,7 @@
     },
     {
       "name": "cdktn",
-      "version": "^0.23.0",
+      "version": "^0.24.0",
       "type": "build"
     },
     {
@@ -40,7 +75,7 @@
     },
     {
       "name": "constructs",
-      "version": "^10.6.0",
+      "version": "^10.7.2",
       "type": "build"
     },
     {
@@ -119,22 +154,22 @@
     },
     {
       "name": "@cdktn/provider-aws",
-      "version": "^24.8.0",
+      "version": "^25.7.1",
       "type": "peer"
     },
     {
       "name": "cdktn",
-      "version": "^0.23.0",
+      "version": "^0.24.0",
       "type": "peer"
     },
     {
       "name": "constructs",
-      "version": "^10.6.0",
+      "version": "^10.7.2",
       "type": "peer"
     },
     {
       "name": "terraconstructs",
-      "version": "^0.2.6",
+      "version": "^0.2.20",
       "type": "peer"
     }
   ],

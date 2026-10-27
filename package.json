@@ -35,15 +35,22 @@
     "organization": false
   },
   "devDependencies": {
+    "@aws-cdk/cloud-assembly-schema": "^54.17.0",
+    "@aws-cdk/region-info": "^2.233.0",
     "@aws-sdk/client-dynamodb": "^3.1075.0",
-    "@cdktn/provider-aws": "24.8.0",
+    "@cdktn/provider-archive": "^14.0.0",
+    "@cdktn/provider-aws": "25.7.1",
+    "@cdktn/provider-cloudinit": "^14.0.0",
+    "@cdktn/provider-docker": "^16.0.0",
+    "@cdktn/provider-time": "^14.0.0",
+    "@cdktn/provider-tls": "^14.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "ts5.9",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
-    "cdktn": "0.23.0",
+    "cdktn": "0.24.0",
     "commit-and-tag-version": "^12",
-    "constructs": "10.6.0",
+    "constructs": "10.7.2",
     "eslint": "^9",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -58,16 +65,16 @@
     "jsii-rosetta": "~5.9",
     "prettier": "^3.9.1",
     "projen": "^0.100.7",
-    "terraconstructs": "0.2.6",
+    "terraconstructs": "0.2.20",
     "ts-jest": "^29.4.11",
     "ts-node": "^10.9.2",
     "typescript": "~5.9"
   },
   "peerDependencies": {
-    "@cdktn/provider-aws": "^24.8.0",
-    "cdktn": "^0.23.0",
-    "constructs": "^10.6.0",
-    "terraconstructs": "^0.2.6"
+    "@cdktn/provider-aws": "^25.7.1",
+    "cdktn": "^0.24.0",
+    "constructs": "^10.7.2",
+    "terraconstructs": "^0.2.20"
   },
   "pnpm": {},
   "keywords": [
@@ -97,6 +104,28 @@
     ],
     "maxWorkers": "50%",
     "testEnvironment": "node",
+    "transformIgnorePatterns": [
+      "/node_modules/(?!.*change-case)"
+    ],
+    "transform": {
+      "^.+\\.[t]sx?$": [
+        "ts-jest",
+        {
+          "tsconfig": "test/tsconfig.json"
+        }
+      ],
+      "/change-case/.+\\.js$": [
+        "ts-jest",
+        {
+          "diagnostics": false,
+          "tsconfig": {
+            "allowJs": true,
+            "module": "commonjs",
+            "target": "es2022"
+          }
+        }
+      ]
+    },
     "testMatch": [
       "<rootDir>/@(src|test)/**/*(*.)@(spec|test).ts?(x)",
       "<rootDir>/@(src|test)/**/__tests__/**/*.ts?(x)",
@@ -130,15 +159,7 @@
           "outputDirectory": "test-reports"
         }
       ]
-    ],
-    "transform": {
-      "^.+\\.[t]sx?$": [
-        "ts-jest",
-        {
-          "tsconfig": "test/tsconfig.json"
-        }
-      ]
-    }
+    ]
   },
   "types": "lib/index.d.ts",
   "jsii": {

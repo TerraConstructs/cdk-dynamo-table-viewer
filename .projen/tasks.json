@@ -295,7 +295,7 @@
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @aws-sdk/client-dynamodb @cdktn/provider-aws @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser cdktn commit-and-tag-version constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii prettier projen ts-jest ts-node typescript terraconstructs"
+          "exec": "pnpm update @aws-cdk/cloud-assembly-schema @aws-cdk/region-info @aws-sdk/client-dynamodb @cdktn/provider-archive @cdktn/provider-aws @cdktn/provider-cloudinit @cdktn/provider-docker @cdktn/provider-time @cdktn/provider-tls @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser cdktn commit-and-tag-version constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii prettier projen ts-jest ts-node typescript terraconstructs"
         },
         {
           "exec": "pnpm exec projen"
