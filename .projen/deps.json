@@ -16,32 +16,32 @@
     },
     {
       "name": "@cdktn/provider-archive",
-      "version": "^14.0.0",
+      "version": "^15.0.0",
       "type": "build"
     },
     {
       "name": "@cdktn/provider-aws",
-      "version": "^25.7.1",
+      "version": "^26.0.0",
       "type": "build"
     },
     {
       "name": "@cdktn/provider-cloudinit",
-      "version": "^14.0.0",
+      "version": "^15.0.0",
       "type": "build"
     },
     {
       "name": "@cdktn/provider-docker",
-      "version": "^16.0.0",
+      "version": "^17.0.0",
       "type": "build"
     },
     {
       "name": "@cdktn/provider-time",
-      "version": "^14.0.0",
+      "version": "^15.0.0",
       "type": "build"
     },
     {
       "name": "@cdktn/provider-tls",
-      "version": "^14.0.0",
+      "version": "^15.0.0",
       "type": "build"
     },
     {
@@ -65,7 +65,7 @@
     },
     {
       "name": "cdktn",
-      "version": "^0.24.0",
+      "version": "^0.25.0",
       "type": "build"
     },
     {
@@ -154,12 +154,12 @@
     },
     {
       "name": "@cdktn/provider-aws",
-      "version": "^25.7.1",
+      "version": "^26.0.0",
       "type": "peer"
     },
     {
       "name": "cdktn",
-      "version": "^0.24.0",
+      "version": "^0.25.0",
       "type": "peer"
     },
     {
@@ -169,7 +169,7 @@
     },
     {
       "name": "terraconstructs",
-      "version": "^0.2.20",
+      "version": "^0.2.21",
       "type": "peer"
     }
   ],
