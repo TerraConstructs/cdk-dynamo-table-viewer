@@ -39,26 +39,26 @@ const project = new cdk.JsiiProject({
   npmTrustedPublishing: true,
 
   devDeps: [
-    "cdktn@^0.24.0",
-    "@cdktn/provider-aws@^25.7.1",
+    "cdktn@^0.25.0",
+    "@cdktn/provider-aws@^26.0.0",
     "constructs@^10.7.2",
     "@aws-sdk/client-dynamodb",
-    // terraconstructs 0.2.20 declares these as (non-optional) peers; they are
+    // terraconstructs 0.2.21 declares these as (non-optional) peers; they are
     // only needed here so the test suite can load terraconstructs.
-    "@cdktn/provider-tls@^14.0.0",
-    "@cdktn/provider-time@^14.0.0",
-    "@cdktn/provider-docker@^16.0.0",
-    "@cdktn/provider-archive@^14.0.0",
-    "@cdktn/provider-cloudinit@^14.0.0",
+    "@cdktn/provider-tls@^15.0.0",
+    "@cdktn/provider-time@^15.0.0",
+    "@cdktn/provider-docker@^17.0.0",
+    "@cdktn/provider-archive@^15.0.0",
+    "@cdktn/provider-cloudinit@^15.0.0",
     "@aws-cdk/region-info@^2.233.0",
     "@aws-cdk/cloud-assembly-schema@^54.17.0",
   ],
   // cdktn construct lib config
   peerDeps: [
-    "cdktn@^0.24.0",
-    "@cdktn/provider-aws@^25.7.1",
+    "cdktn@^0.25.0",
+    "@cdktn/provider-aws@^26.0.0",
     "constructs@^10.7.2",
-    "terraconstructs@^0.2.20",
+    "terraconstructs@^0.2.21",
   ],
   workflowNodeVersion,
   jestOptions: {
